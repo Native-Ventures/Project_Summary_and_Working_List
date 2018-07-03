@@ -22,11 +22,11 @@
           addRandomIds(fields);
           return fields;
         }
-        
+
         function addNew() {
           $scope.model[$scope.options.key] = $scope.model[$scope.options.key] || [];
           var repeatsection = $scope.model[$scope.options.key];
-          var lastSection = repeatsection[repeatsection.length - 1];
+          var lastSection = repeatsection[repeatsection.length];
           var newsection = {};
           if (lastSection) {
             newsection = angular.copy(lastSection);
@@ -182,7 +182,7 @@
     // }
 
     function onSubmit() {
-      var data = JSON.stringify(vm.model);
+      // var data = JSON.stringify(vm.model);
       alert("Thank you for submitting your project summary.")
       vm.options.resetModel()
     }
@@ -191,17 +191,17 @@
     function init() {
       vm.model = {
         
-          firms: [
-            {
-              firm: "Kirkland",
-              parties: [
-                {
-                  firstName: "John",
-                  lastName: "Smith",
-                },
-              ]
-            },
-          ] 
+          // firms: [
+          //   {
+          //     firm: "Kirkland",
+          //     parties: [
+          //       {
+          //         firstName: "John",
+          //         lastName: "Smith",
+          //       },
+          //     ]
+          //   },
+          // ] 
       };
 
       vm.fields = 
@@ -227,7 +227,7 @@
               templateOptions: {
                   type: 'text',
                   label: 'Closing Date',
-                  datepickerPopup: "dd-MMMM-yyyy",
+                  // datepickerPopup: "dd-MM-YYYY",
                   required: true
 
               }
@@ -280,10 +280,6 @@
           ]
         },
 
-        {
-          template: '<hr style="border-color:white;"/>'
-        },
-
         //Begin the Repeated Firm Section
         {
           type: 'repeatSection',
@@ -301,27 +297,40 @@
                       className: 'row',
                       fieldGroup: [
                         {
-                          className: 'col-xs-6',
+                          className: 'col-xs-4',
                           key: 'firm',
                           type: 'input',
                           templateOptions: {
-                              type: 'text',
-                              label: 'Firm',
-                              placeholder: 'Enter the firm\'s name',
-                              required: true
+                            type: 'text',
+                            label: 'Firm',
+                            placeholder: 'Enter the firm\'s name',
+                            required: true
                           }
                         },
                         {
-                          className: 'col-xs-6',
+                          className: 'col-xs-4',
                           key: 'client',
                           type: 'input',
                           templateOptions: {
-                              type: 'text',
-                              label: 'Client',
-                              placeholder: 'Enter the client\'s name',
-                              required: true
+                            type: 'text',
+                            label: 'Client',
+                            placeholder: 'Enter the client\'s name',
+                            required: true
                           }
-                        }
+                        },
+                        {
+                          className: 'col-xs-4',
+                          key: 'firm_role',
+                          type: 'select',
+                          templateOptions: {
+                            label: 'Firm\'s Role',
+                            options: [
+                              {name: 'Buyside', value: 'buyside'},
+                              {name: 'Sellside', value: 'sellside'},
+                            ],
+                            required: true
+                          }
+                        },
                       ]
                     },
 
@@ -347,7 +356,8 @@
                                     type: 'input',
                                     key: 'firstName',
                                     templateOptions: {
-                                      label: 'First Name'
+                                      label: 'First Name',
+                                      required: true
                                     }
                                   },
                                   {
@@ -355,7 +365,8 @@
                                     type: 'input',
                                     key: 'lastName',
                                     templateOptions: {
-                                      label: 'Last Name'
+                                      label: 'Last Name',
+                                      required: true
                                     },
                                   }
                                 ]
@@ -384,7 +395,7 @@
                                         {name: 'Partner', value: 'partner'},
                                         {name: 'Associate', value: 'associate'},
                                       ],
-
+                                      required: true
                                     }
                                   },
                                   {
@@ -403,11 +414,15 @@
                                           {score: "3", id: 3},
                                           {score: "4", id: 4},
                                           {score: "5", id: 5}
-                                      ]
+                                      ],
+                                      required: true
                                     }
                                   },
                                 ]
                               },
+                              {
+                                template: '<hr style="border-top: dashed 1px; border-color:white;"/>'
+                              }
                             ]
                           }
                       }, 
