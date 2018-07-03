@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <title>Project Summary and Working List</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+     <!-- Application Dependencies -->
+    <script src="node_modules/api-check/dist/api-check.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-formly/dist/formly.js"></script>
+    <script src="node_modules/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js"></script>
+    <!-- Angular-UI Bootstrap has tabs directive we want -->
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+    <script src="node_modules/glyphicons/glyphicons.js"></script>
+
+    <!-- Application Scripts -->
+    <script src="scripts/MainCtrl.js"></script>
+    <script src="scripts/senddata.php"></script>
+
+</head>
+
+
+<body ng-app="formlyExample" ng-controller="MainCtrl as vm">
+    <div>
+        <!-- <div class = banner></div> -->
+        <!-- <img src="images/knelogo.png"> -->
+        <div class="container">
+
+            <form ng-submit="vm.onSubmit()" name="vm.form" novalidate action = "senddata.php" method = "post">
+                <h1>Project Summary and Working List</h1>
+                <formly-form model="vm.model" fields="vm.fields" form="vm.form" options="vm.options">
+                    <button type="submit" class="btn btn-primary submit-button" ng-click="onSubmit()" ng-disabled="vm.projectForm.$invalid">Submit</button>
+                    <button type="button" class="btn btn-default" ng-click="vm.options.resetModel()">Reset</button>
+                </formly-form>
+            </form>
+
+           <!--  <h2>Form Data</h2>
+                <pre>{{vm.model | json}}</pre> -->
+
+        </div> 
+
+<!-- Custom Templates -->
+
+    <!-- repeatSection -->
+        <script type="text/ng-template" id="repeatSection.html">
+          <div>
+            <div class="{{hideRepeat}}">
+              <div class="repeatsection" ng-repeat="element in model[options.key]" ng-init="fields = copyFields(to.fields)">
+                <formly-form fields="fields"
+                             model="element"
+                             form="form">
+                </formly-form>
+                <div style="margin-bottom:20px;">
+                  <button type="button" class="btn btn-sm btn-danger" ng-click="model[options.key].splice($index, 1)">
+                    Remove
+                  </button>
+                </div>
+                <hr>
+            </div>
+            <p class="AddNewButton">
+              <button type="button" class="btn btn-primary" ng-click="addNew()" >{{to.btnText}}</button>
+            </p>
+          </div>
+        </script>
+
+    <!-- inline-radio-->
+        <script type="text/ng-template" id="inline-radio.html">
+             <div class="radio-group">
+              
+                <label ng-repeat="(key, option) in to.options"class="radio-inline">
+                  <input type="radio"
+                         id="{{id + '_'+ $index}}"
+                         tabindex="0"
+                         ng-value="option[to.valueProp || 'value']"
+                         ng-model="model[options.key]">
+                  {{option[to.labelProp || 'name']}}
+                </label>
+              
+            </div>
+        </script>
+
+    <!-- datepicker-->
+        <script type="text/ng-template" id="datepicker.html">
+          <p class="input-group">
+            <input  type="text"
+                    id="{{::id}}"
+                    name="{{::id}}"
+                    ng-model="model[options.key]"
+                    class="form-control"
+                    ng-click="datepicker.open($event)"
+                    uib-datepicker-popup="{{to.datepickerOptions.format}}"
+                    is-open="datepicker.opened"
+                    datepicker-options="to.datepickerOptions" />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datepicker.open($event)" ng-disabled="to.disabled"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>
+    </script>
+
+
+    </div> 
+
+</body>
+
+
+</html>
