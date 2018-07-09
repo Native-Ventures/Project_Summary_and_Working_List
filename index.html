@@ -15,11 +15,10 @@
     <script src="node_modules/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js"></script>
     <!-- Angular-UI Bootstrap has tabs directive we want -->
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
-    <script src="node_modules/glyphicons/glyphicons.js"></script>
 
     <!-- Application Scripts -->
     <script src="scripts/MainCtrl.js"></script>
-    <script src="scripts/senddata.php"></script>
+    <!-- <script src="senddata.php"></script> -->
 
 </head>
 
@@ -30,10 +29,11 @@
         <!-- <img src="images/knelogo.png"> -->
         <div class="container">
 
-            <form ng-submit="vm.onSubmit()" name="vm.form" action = "senddata.php" method = "post">
+            <form ng-submit="vm.onSubmit()" name="vm.form">
                 <h1>Project Summary and Working List</h1>
                 <formly-form model="vm.model" fields="vm.fields" form="vm.form" options="vm.options">
-                    <button type="submit" class="btn btn-primary submit-button" ng-click="onSubmit()" ng-disabled="vm.projectForm.$invalid">Submit</button>
+                    <!-- <input id="data2" name="data" type=hidden></input> -->
+                    <button type="submit" name = "submit" class="btn btn-primary submit-button" ng-disabled="vm.projectForm.$invalid">Submit</button>
                     <button type="button" class="btn btn-default" ng-click="vm.options.resetModel()">Reset</button>
                 </formly-form>
             </form>
@@ -41,10 +41,11 @@
 
             <!-- <h2>Original Fields</h2>
                 <pre>{{vm.originalFields | json}}</pre> -->
-            <!-- <h2>Form Data</h2>
-                <pre>{{vm.model | json}}</pre> -->
+            <h2>Form Data</h2>
+                <pre>{{vm.model | json}}</pre>
             <!-- <h2>Scope Model</h2>
                 <pre>{{vm.fields}}</pre> -->
+
             
 
         </div> 
@@ -67,7 +68,7 @@
                 </div>
             </div>
             <p class="AddNewButton">
-              <button type="button" class="btn btn-primary" ng-click="addNew()" >{{to.btnText}}</button>
+              <button type="button" class="btn btn-primary" ng-click="addNew()" style="background-color:purple; border-color:purple;" >{{to.btnText}}</button>
             </p>
           </div>
         </script>

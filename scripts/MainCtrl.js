@@ -162,47 +162,42 @@
 
     vm.originalFields = angular.copy(vm.fields);
 
-    // function sendData() {
-    //   var data = JSON.stringify(vm.model);// this is your data that you want to pass to the server (could be json)
-    //   var http = new XMLHttpRequest();
-    //   var url = 'get_data.php';
-    //   var params = 'orem=ipsum&name=binny';
-    //   http.open('POST', url, true);
-
-    //   //Send the proper header information along with the request
-    //   http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-    //   http.onreadystatechange = function() {//Call a function when the state changes.
-    //       if(http.readyState == 4 && http.status == 200) {
-    //           alert(http.responseText);
-    //       }
-    //   }
-
-    //   http.send(data);
-    // }
-
     function onSubmit() {
-      // var data = JSON.stringify(vm.model);
-      alert("Thank you for submitting your project summary.")
-      vm.options.resetModel()
+      // var data = JSON.stringify(vm.model);// this is your data that you want to pass to the server (could be json)
+      // var http = new XMLHttpRequest();
+      // var url = 'senddata.php';
+      // http.open('POST', url, true);
+
+      // //Send the proper header information along with the request
+      // http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+      // http.onreadystatechange = function() {//Call a function when the state changes.
+      //     if(http.readyState == 4 && http.status == 200) {
+      //         // alert(http.responseText);
+      //     }
+      // }
+      // http.send(data);
+      // console.log(data)
+
+      alert("Thank you for submitting your project summary.");
+      vm.options.resetModel();
     }
 
 
     function init() {
-      vm.model = {
-        
-          // firms: [
-          //   {
-          //     firm: "Kirkland",
-          //     parties: [
-          //       {
-          //         firstName: "John",
-          //         lastName: "Smith",
-          //       },
-          //     ]
-          //   },
-          // ] 
-      };
+      // vm.model = {
+      //     firms: [
+      //       {
+      //         firm: "Kirkland",
+      //         // parties: [
+      //         //   {
+      //         //     firstName: "",
+      //         //     lastName: "",
+      //         //   },
+      //         // ]
+      //       },
+      //     ] 
+      // };
 
       vm.fields = 
       [
@@ -387,13 +382,14 @@
                                   },
                                   {
                                     className: 'col-xs-3',
-                                    key: 'role',
+                                    key: 'position',
                                     type: 'select',
                                     templateOptions: {
-                                      label: 'Role',
+                                      label: 'Position',
                                       options: [
                                         {name: 'Partner', value: 'partner'},
                                         {name: 'Associate', value: 'associate'},
+                                        {name: 'Council', value: 'council'},
                                       ],
                                       required: true
                                     }
