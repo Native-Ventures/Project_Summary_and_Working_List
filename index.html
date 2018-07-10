@@ -15,10 +15,14 @@
     <script src="node_modules/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js"></script>
     <!-- Angular-UI Bootstrap has tabs directive we want -->
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-messages.min.js"></script>
+
+
 
     <!-- Application Scripts -->
     <script src="scripts/MainCtrl.js"></script>
     <!-- <script src="senddata.php"></script> -->
+    
 
 </head>
 
@@ -33,8 +37,14 @@
                 <h1>Project Summary and Working List</h1>
                 <formly-form model="vm.model" fields="vm.fields" form="vm.form" options="vm.options">
                     <!-- <input id="data2" name="data" type=hidden></input> -->
-                    <button type="submit" name = "submit" class="btn btn-primary submit-button" ng-disabled="vm.projectForm.$invalid">Submit</button>
-                    <button type="button" class="btn btn-default" ng-click="vm.options.resetModel()">Reset</button>
+                  <div class="btn-group btn-group-justified">
+                    <div class="btn-group">
+                      <button type="submit" name = "submit" class="btn btn-success submit-button" ng-disabled="vm.projectForm.$invalid">Submit</button>
+                    </div>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-danger" ng-click = "vm.confirmreset()">Reset</button>
+                    </div>
+                  </div>
                 </formly-form>
             </form>
 
@@ -62,13 +72,13 @@
                              form="form">
                 </formly-form>
                 <div style="margin-bottom:20px;">
-                  <button type="button" class="btn btn-sm btn-danger" ng-click="model[options.key].splice($index, 1)">
-                    Remove
+                  <button type="button" class="btn btn-block btn-warning" ng-click="model[options.key].splice($index, 1)">
+                    {{to.removebtnText}}
                   </button>
                 </div>
             </div>
             <p class="AddNewButton">
-              <button type="button" class="btn btn-primary" ng-click="addNew()" style="background-color:purple; border-color:purple;" >{{to.btnText}}</button>
+              <button type="button" class="btn btn-block btn-primary" ng-click="addNew()" style="background-color:{{to.btnColor}}; border-color:{{to.btnBorder}};" >{{to.btnText}}</button>
             </p>
           </div>
         </script>
@@ -105,6 +115,10 @@
                 <button type="button" class="btn btn-default" ng-click="datepicker.open($event)" ng-disabled="to.disabled"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
           </p>
+    </script>
+
+    <script type="text/ng-template" id="validation.html">
+      <div ng-message="valid_purchase_price">This is not a valid purchase price.</div>
     </script>
 
 

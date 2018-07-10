@@ -22,8 +22,6 @@ body{
 	overflow-y: scroll;
 }
 
-
-
 .container h1 {
 	font-size: 30px;
 	font-style: bold;
@@ -48,6 +46,12 @@ body{
 	background-size: 12.5%;
 	height: 100px;
 	background-repeat: repeat-x;
+}
+
+.validation {
+  position: absolute;
+  font-size: .8em;
+  color: #a94442;
 }
 
 /*img {

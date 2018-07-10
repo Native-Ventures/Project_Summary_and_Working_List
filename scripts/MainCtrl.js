@@ -4,8 +4,28 @@
 
   'use strict';
 
-  var app = angular.module('formlyExample', ['formly', 'formlyBootstrap', 'ui.bootstrap'], function config(formlyConfigProvider) {
+  var app = angular.module('formlyExample', ['formly', 'ngMessages', 'formlyBootstrap', 'ui.bootstrap'], function config(formlyConfigProvider) {
     var unique = 1;
+
+
+    formlyConfigProvider.setWrapper([
+      {
+        template: [
+          '<div class="formly-template-wrapper form-group"',
+            'ng-class="{\'has-error\': options.validation.errorExistsAndShouldBeVisible}">',
+            '<formly-transclude></formly-transclude>',
+              '<div class="validation"',
+              'ng-if="options.validation.errorExistsAndShouldBeVisible"',
+              'ng-messages="options.formControl.$error">',
+                '<div ng-messages-include="validation.html"></div>',
+                '<div ng-message="{{::name}}" ng-repeat="(name, message) in ::options.validation.messages">',
+                '{{message(options.formControl.$viewValue, options.formControl.$modelValue, this)}}',
+                '</div>',
+              '</div>',
+          '</div>'
+        ].join(' ')
+      },
+    ]);
 
     formlyConfigProvider.setType({
       name: 'repeatSection',
@@ -57,7 +77,11 @@
     });
   });
 
-  app.run(function(formlyConfig) {
+  app.run(function(formlyConfig, formlyValidationMessages) {
+    formlyValidationMessages.messages.pattern = function(viewValue, modelValue, scope) {
+      return viewValue + 'is invalid';
+    };
+
     formlyConfig.setType({
       name: 'radioType',
       extends: 'radio',
@@ -143,9 +167,11 @@
   });
 
   app.controller('MainCtrl', function MainCtrl(formlyVersion) {
+
     var vm = this;
     // funcation assignment
     vm.onSubmit = onSubmit;
+    vm.confirmreset = confirmreset;
 
     // variable assignment
     vm.author = { // optionally fill in your info below :-)
@@ -156,7 +182,9 @@
       angularVersion: angular.version.full,
       formlyVersion: formlyVersion
     };
-    vm.options = {};
+    vm.options = {
+
+    };
 
     init();
 
@@ -177,12 +205,18 @@
       //     }
       // }
       // http.send(data);
-      // console.log(data)
+      // console.log(data);
 
       alert("Thank you for submitting your project summary.");
       vm.options.resetModel();
     }
 
+    function confirmreset() {
+      var reset = confirm("Are you sure you would like to reset this form?");
+      if (reset == true){
+        vm.options.resetModel();
+      }
+    }
 
     function init() {
       // vm.model = {
@@ -231,12 +265,21 @@
               className: 'col-xs-3',
               key: 'purchase_price',
               type: 'input',
+              validators: {
+                valid_purchase_price: {
+                  expression: function(viewValue, modelValue) {
+                    var value = modelValue || viewValue;
+                    return RegExp('^\\$[0-9]{1,3}(,[0-9]{3})*$').test(value);
+                  },
+                  message: '$viewValue + " is not a valid purchase price."'
+                }
+              },
               templateOptions: {
                   type: 'text',
                   label: 'Purchase Price',
-                  placeholder: 'Enter purchase price',
+                  placeholder: '$1,000,000,000',
                   required: true
-              }
+              },
             },
           ]
         },
@@ -281,7 +324,10 @@
           key: 'firms',
           templateOptions:
               { 
-                btnText: "Add Another Firm",
+                btnText: 'Add Another Firm',
+                btnColor: '#b241f4',
+                btnBorder: '#8e33c4',
+                removebtnText: 'Remove Firm',
                 fields: 
                   [
                     {
@@ -341,6 +387,9 @@
                       templateOptions: 
                         {
                           btnText: "Add Another Party",
+                          btnColor: "#7742f4",
+                          btnBorder: "#6537ce",
+                          removebtnText: "Remove Party",
                           fields: 
                             [
                               {
@@ -352,6 +401,7 @@
                                     key: 'firstName',
                                     templateOptions: {
                                       label: 'First Name',
+                                      placeholder: 'Enter party\'s first name',
                                       required: true
                                     }
                                   },
@@ -361,6 +411,7 @@
                                     key: 'lastName',
                                     templateOptions: {
                                       label: 'Last Name',
+                                      placeholder: 'Enter party\'s last name',
                                       required: true
                                     },
                                   }
@@ -430,3 +481,4 @@
   });
 
 })();
+
