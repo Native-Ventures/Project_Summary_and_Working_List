@@ -212,7 +212,7 @@
     }
 
     function confirmreset() {
-      var reset = confirm("Are you sure you would like to reset this form?");
+      var reset = confirm("Are you sure you would like to clear this form?");
       if (reset == true){
         vm.options.resetModel();
       }
@@ -242,11 +242,12 @@
               className: 'col-xs-6',
               key: 'project',
               type: 'input',
+
               templateOptions: {
                   type: 'text',
                   label: 'Project Name',
                   placeholder: 'Enter project Name',
-                  required: true
+                  required: true,
               }
             },
             {
@@ -330,9 +331,9 @@
                 removebtnText: 'Remove Firm',
                 fields: 
                   [
-                    {
-                      template: '<hr style="border-top: dotted 3px;"/>'
-                    },
+                    // {
+                    //   template: '<hr style="border-top: dotted 3px;"/>'
+                    // },
 
                     {
                       className: 'row',
@@ -375,21 +376,21 @@
                       ]
                     },
 
-                    {
-                      template: '<hr style="border-top: dotted 3px;"/>'
-                    },
+                    // {
+                    //   template: '<hr style="border-top: dotted 3px;"/>'
+                    // },
 
                     //Begin the repeated Lawyer Section
 
                     {
                       type: 'repeatSection',
-                      key: 'parties',
+                      key: 'attorneys',
                       templateOptions: 
                         {
-                          btnText: "Add Another Party",
+                          btnText: "Add Another Attorney",
                           btnColor: "#7742f4",
                           btnBorder: "#6537ce",
-                          removebtnText: "Remove Party",
+                          removebtnText: "Remove Attorney",
                           fields: 
                             [
                               {
@@ -401,7 +402,7 @@
                                     key: 'firstName',
                                     templateOptions: {
                                       label: 'First Name',
-                                      placeholder: 'Enter party\'s first name',
+                                      placeholder: 'Enter attorney\'s first name',
                                       required: true
                                     }
                                   },
@@ -411,7 +412,7 @@
                                     key: 'lastName',
                                     templateOptions: {
                                       label: 'Last Name',
-                                      placeholder: 'Enter party\'s last name',
+                                      placeholder: 'Enter attorney\'s last name',
                                       required: true
                                     },
                                   }
@@ -433,14 +434,14 @@
                                   },
                                   {
                                     className: 'col-xs-3',
-                                    key: 'position',
+                                    key: 'title',
                                     type: 'select',
                                     templateOptions: {
-                                      label: 'Position',
+                                      label: 'Title',
                                       options: [
                                         {name: 'Partner', value: 'partner'},
                                         {name: 'Associate', value: 'associate'},
-                                        {name: 'Council', value: 'council'},
+                                        {name: 'Counsel', value: 'counsel'},
                                       ],
                                       required: true
                                     }
@@ -451,7 +452,7 @@
                                     key: "performance",
                                     templateOptions: {
                                       inline: true,
-                                      label: "Performance (5 is perfect)",
+                                      label: "Performance - 5 is perfect",
                                       // theme: "custom",
                                       labelProp: "score",
                                       valueProp: "id",
@@ -465,11 +466,36 @@
                                       required: true
                                     }
                                   },
+                                  {
+                                    className: 'row',
+                                    fieldGroup: [
+                                      {
+                                        className: 'col-xs-6',
+                                        type: 'input',
+                                        key: 'classyear',
+                                        templateOptions: {
+                                          label: 'Class Year',
+                                          placeholder: 'Enter attorney\'s class year',
+                                          required: false
+                                        }
+                                      },
+                                      {
+                                        className: 'col-xs-6',
+                                        type: 'input',
+                                        key: 'firmlink',
+                                        templateOptions: {
+                                          label: 'Firm Link',
+                                          placeholder: 'Enter attorney\'s firm link',
+                                          required: false
+                                        },
+                                      }
+                                    ]
+                                  },
                                 ]
                               },
-                              {
-                                template: '<hr style="border-top: dashed 1px; border-color:white;"/>'
-                              }
+                              // {
+                              //   template: '<hr style="border-top: dashed 1px; border-color:black;"/>'
+                              // }
                             ]
                           }
                       }, 

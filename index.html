@@ -42,7 +42,7 @@
                       <button type="submit" name = "submit" class="btn btn-success submit-button" ng-disabled="vm.projectForm.$invalid">Submit</button>
                     </div>
                     <div class="btn-group">
-                      <button type="button" class="btn btn-danger" ng-click = "vm.confirmreset()">Reset</button>
+                      <button type="button" class="btn btn-danger" ng-click = "vm.confirmreset()">Clear Form</button>
                     </div>
                   </div>
                 </formly-form>
@@ -67,15 +67,17 @@
           <div>
             <div class="{{hideRepeat}}">
               <div class="repeatsection" ng-repeat="element in model[options.key]" ng-init="fields = copyFields(to.fields)">
-                <formly-form fields="fields"
-                             model="element"
-                             form="form">
-                </formly-form>
+                <hr style="border-top: dotted 3px;"/>
                 <div style="margin-bottom:20px;">
                   <button type="button" class="btn btn-block btn-warning" ng-click="model[options.key].splice($index, 1)">
                     {{to.removebtnText}}
                   </button>
                 </div>
+                <formly-form fields="fields"
+                             model="element"
+                             form="form">
+                </formly-form>
+                
             </div>
             <p class="AddNewButton">
               <button type="button" class="btn btn-block btn-primary" ng-click="addNew()" style="background-color:{{to.btnColor}}; border-color:{{to.btnBorder}};" >{{to.btnText}}</button>
