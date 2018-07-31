@@ -219,19 +219,6 @@
     }
 
     function init() {
-      // vm.model = {
-      //     firms: [
-      //       {
-      //         firm: "Kirkland",
-      //         // parties: [
-      //         //   {
-      //         //     firstName: "",
-      //         //     lastName: "",
-      //         //   },
-      //         // ]
-      //       },
-      //     ] 
-      // };
 
       vm.fields = 
       [
@@ -287,17 +274,40 @@
           className: 'row',
           fieldGroup:[
             {
-              //className: 'col-xs-6',
+              className: 'col-xs-6',
               key: 'project_type',
               type: 'select',
               templateOptions: {
                   label: 'Project Type',
                   options: [
-                    {name: 'Private Equity: M&A', value: 'mna'},
-                    // {name: 'Equity', value: 'eq'},
+                    {name: 'Private Equity M&A', value: 'private_equity_mna'},
+                    {name: 'Public M&A', value: 'public_mna'},
+                    {name: 'Financing', value: 'financing'},
+                    {name: 'Capital Markets', value: 'capital_markets'},
+                    {name: 'Other', value: 'other'},
                ],
                   required: true
               }
+            },
+            {
+              className: 'col-xs-6',
+              key: 'other_project',
+              type: 'input',
+              templateOptions: {
+                  label: 'Other Project Type',
+                    required: false
+              },
+
+              expressionProperties: {
+                'templateOptions.disabled': function($viewValue, $modelValue, scope) {
+                  return scope.model.project_type !== 'other';
+                }
+              },
+
+              // hideExpression: function($viewValue, $modelValue, scope) {
+              //         return scope.model.project_type !== 'other';
+              //       },
+              
             },
             // {
             //   className: 'col-xs-6',
@@ -326,7 +336,7 @@
               type: 'input',
               templateOptions: {
                 type: 'text',
-                label: 'Kirkland\'s Client',
+                label: 'Kirkland Client',
                 placeholder: 'Enter the client\'s name',
                 required: true
               }
@@ -336,7 +346,7 @@
               key: 'kirkland_role',
               type: 'select',
               templateOptions: {
-                label: 'Kirkland\'s Role',
+                label: 'Kirkland Role',
                 options: [
                   {name: 'Buyside', value: 'buyside'},
                   {name: 'Sellside', value: 'sellside'},
@@ -495,15 +505,24 @@
                                   },
                                   {
                                     className: 'col-xs-3',
-                                    key: 'other_rol',
+                                    key: 'other_role',
                                     type: 'input',
                                     templateOptions: {
                                         label: 'Other Role',
-                                          required: false
+                                          required: false,
+                                          disabled: true
                                     },
-                                    hideExpression: function($viewValue, $modelValue, scope) {
-                                            return scope.model.role !== 'other';
-                                          },
+
+                                    expressionProperties: {
+                                      'templateOptions.disabled': function($viewValue, $modelValue, scope) {
+                                        return scope.model.role !== 'other';
+                                      }
+                                    },
+
+                                    // hideExpression: function($viewValue, $modelValue, scope) {
+                                    //         return scope.model.role !== 'other';
+                                    //       },
+
                                   },
                                   {
                                     className: 'col-xs-3',
