@@ -4,7 +4,7 @@
 
   'use strict';
 
-  var app = angular.module('formlyExample', ['formly', 'ngMessages', 'formlyBootstrap', 'ui.bootstrap'], function config(formlyConfigProvider) {
+  var app = angular.module('formlyExample', ['formly', 'ngMessages', 'formlyBootstrap', 'ui.bootstrap', 'ngFileUpload'], function config(formlyConfigProvider) {
     var unique = 1;
 
 
@@ -86,6 +86,12 @@
       name: 'radioType',
       extends: 'radio',
       templateUrl: "inline-radio.html",
+    });
+
+    formlyConfig.setType({
+       name: 'ng-file-upload',
+       extends: 'input',
+       templateUrl: 'ng-file.html'
     });
 
     var attributes = [
@@ -274,7 +280,7 @@
           className: 'row',
           fieldGroup:[
             {
-              className: 'col-xs-6',
+              className: 'col-xs-4',
               key: 'project_type',
               type: 'select',
               templateOptions: {
@@ -290,7 +296,7 @@
               }
             },
             {
-              className: 'col-xs-6',
+              className: 'col-xs-4',
               key: 'other_project',
               type: 'input',
               templateOptions: {
@@ -303,12 +309,13 @@
                   return scope.model.project_type !== 'other';
                 }
               },
+            },
 
               // hideExpression: function($viewValue, $modelValue, scope) {
               //         return scope.model.project_type !== 'other';
               //       },
 
-            },
+            
             // {
             //   className: 'col-xs-6',
             //   key: 'mna_field',
@@ -325,6 +332,15 @@
             //           return scope.model.project_type !== 'mna';
             //         },
             // },
+
+            {
+              className: "col-xs-4",
+              key: 'working_group_list',
+              type: 'ng-file-upload',
+              templateOptions: {
+                label: 'Upload Working Group List'
+              }
+            }, 
           ]
         },
         {
@@ -613,13 +629,6 @@
                             ]
                           }
                       },
-                      {
-                        key: 'files',
-                        type: 'ng-file-upload',
-                        templateOptions: {
-                          label: 'Files'
-                        }
-                      }, 
                   ]
               }
             },

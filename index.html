@@ -17,6 +17,10 @@
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-messages.min.js"></script>
 
+    <!-- File Upload Source -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload-all.min.js"></script>
+
+
 
 
     <!-- Application Scripts -->
@@ -126,6 +130,10 @@
 
     <script type="text/ng-template" id="validation.html">
       <div ng-message="valid_purchase_price">This is not a valid purchase price.</div>
+    </script>
+
+    <script type="text/ng-template" id="ng-file.html">
+      <input type="file"  ngf-select="formState.upload($files)"  name="working_group_list" multiple>
     </script>
 
 
