@@ -191,21 +191,21 @@
     vm.originalFields = angular.copy(vm.fields);
 
     function onSubmit() {
-      // var data = JSON.stringify(vm.model);// this is your data that you want to pass to the server (could be json)
-      // var http = new XMLHttpRequest();
-      // var url = 'senddata.php';
-      // http.open('POST', url, true);
+      var data = JSON.stringify(vm.model);// this is your data that you want to pass to the server (could be json)
+      var http = new XMLHttpRequest();
+      var url = 'senddata.php';
+      http.open('POST', url, true);
 
-      // //Send the proper header information along with the request
-      // http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      //Send the proper header information along with the request
+      http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-      // http.onreadystatechange = function() {//Call a function when the state changes.
-      //     if(http.readyState == 4 && http.status == 200) {
-      //         // alert(http.responseText);
-      //     }
-      // }
-      // http.send(data);
-      // console.log(data);
+      http.onreadystatechange = function() {//Call a function when the state changes.
+          if(http.readyState == 4 && http.status == 200) {
+              // alert(http.responseText);
+          }
+      }
+      http.send(data);
+      console.log(data);
 
       alert("Thank you for submitting your project summary.");
       vm.options.resetModel();
@@ -471,11 +471,42 @@
                                     fieldGroup: [
                                       {
                                         className: 'col-xs-6',
-                                        type: 'input',
+                                        type: 'select',
                                         key: 'classyear',
                                         templateOptions: {
                                           label: 'Class Year',
                                           placeholder: 'Enter attorney\'s class year',
+                                          options: [
+                                            {name: '2018', value: '2018'},
+                                            {name: '2017', value: '2017'},
+                                            {name: '2016', value: '2016'},
+                                            {name: '2015', value: '2015'},
+                                            {name: '2014', value: '2014'},
+                                            {name: '2013', value: '2013'},
+                                            {name: '2012', value: '2012'},
+                                            {name: '2011', value: '2011'},
+                                            {name: '2010', value: '2010'},
+                                            {name: '2009', value: '2009'},
+                                            {name: '2008', value: '2008'},
+                                            {name: '2007', value: '2007'},
+                                            {name: '2006', value: '2006'},
+                                            {name: '2005', value: '2005'},
+                                            {name: '2004', value: '2004'},
+                                            {name: '2003', value: '2003'},
+                                            {name: '2002', value: '2002'},
+                                            {name: '2001', value: '2001'},
+                                            {name: '2000', value: '2000'},
+                                            {name: '1999', value: '1999'},
+                                            {name: '1998', value: '1998'},
+                                            {name: '1997', value: '1997'},
+                                            {name: '1996', value: '1996'},
+                                            {name: '1995', value: '1995'},
+                                            {name: '1994', value: '1994'},
+                                            {name: '1993', value: '1993'},
+                                            {name: '1992', value: '1992'},
+                                            {name: '1991', value: '1991'},
+                                            {name: '1990', value: '1990'},
+                                          ],
                                           required: false
                                         }
                                       },
