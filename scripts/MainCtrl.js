@@ -242,10 +242,9 @@
               className: 'col-xs-6',
               key: 'project',
               type: 'input',
-
               templateOptions: {
                   type: 'text',
-                  label: 'Project Name',
+                  label: 'Project Name Or Target/Company Name',
                   placeholder: 'Enter project Name',
                   required: true,
               }
@@ -318,6 +317,35 @@
             // },
           ]
         },
+        {
+          className: 'row',
+          fieldGroup: [
+            {
+              className: 'col-xs-6',
+              key: 'kirkland_client',
+              type: 'input',
+              templateOptions: {
+                type: 'text',
+                label: 'Kirkland\'s Client',
+                placeholder: 'Enter the client\'s name',
+                required: true
+              }
+            },
+            {
+              className: 'col-xs-6',
+              key: 'kirkland_role',
+              type: 'select',
+              templateOptions: {
+                label: 'Kirkland\'s Role',
+                options: [
+                  {name: 'Buyside', value: 'buyside'},
+                  {name: 'Sellside', value: 'sellside'},
+                ],
+                required: true
+              }
+            },
+          ]
+        },
 
         //Begin the Repeated Firm Section
         {
@@ -355,7 +383,7 @@
                           type: 'input',
                           templateOptions: {
                             type: 'text',
-                            label: 'Client',
+                            label: 'Client (e.g. name of entity represented by firm)',
                             placeholder: 'Enter the client\'s name',
                             required: true
                           }
@@ -389,6 +417,7 @@
                         {
                           btnText: "Add Another Attorney",
                           btnColor: "#7742f4",
+                          btnHoverColor: "#fff",
                           btnBorder: "#6537ce",
                           removebtnText: "Remove Attorney",
                           fields: 
@@ -397,7 +426,7 @@
                                 className: 'row',
                                 fieldGroup: [
                                   {
-                                    className: 'col-xs-6',
+                                    className: 'col-xs-4',
                                     type: 'input',
                                     key: 'firstName',
                                     templateOptions: {
@@ -407,7 +436,7 @@
                                     }
                                   },
                                   {
-                                    className: 'col-xs-6',
+                                    className: 'col-xs-4',
                                     type: 'input',
                                     key: 'lastName',
                                     templateOptions: {
@@ -415,14 +444,9 @@
                                       placeholder: 'Enter attorney\'s last name',
                                       required: true
                                     },
-                                  }
-                                ]
-                              },
-                              {
-                                className: 'row',
-                                fieldGroup:[
+                                  },
                                   {
-                                    className: 'col-xs-6',
+                                    className: 'col-xs-4',
                                     key: 'email',
                                     type: 'input',
                                     templateOptions: {
@@ -431,7 +455,12 @@
                                       placeholder: 'Enter email',
                                       required: true
                                     }
-                                  },
+                                  }
+                                ]
+                              },
+                              {
+                                className: 'row',
+                                fieldGroup:[
                                   {
                                     className: 'col-xs-3',
                                     key: 'title',
@@ -443,8 +472,38 @@
                                         {name: 'Associate', value: 'associate'},
                                         {name: 'Counsel', value: 'counsel'},
                                       ],
-                                      required: true
+                                      required: false
                                     }
+                                  },
+                                  {
+                                    className: 'col-xs-3',
+                                    key: 'role',
+                                    type: 'select',
+                                    templateOptions: {
+                                      label: 'Role',
+                                      options: [
+                                        {name: 'M&A', value: 'mna'},
+                                        {name: 'Finance', value: 'finance'},
+                                        {name: 'Tax', value: 'tax'},
+                                        {name: 'Intellectual Property', value: 'ip'},
+                                        {name: 'Real Estate', value: 'realestate'},
+                                        {name: 'Labor/Executive Compensation/Benefits', value: 'l_ec_b'},
+                                        {name: 'Other', value: 'other'},
+                                      ],
+                                      required: false
+                                    }
+                                  },
+                                  {
+                                    className: 'col-xs-3',
+                                    key: 'other_rol',
+                                    type: 'input',
+                                    templateOptions: {
+                                        label: 'Other Role',
+                                          required: false
+                                    },
+                                    hideExpression: function($viewValue, $modelValue, scope) {
+                                            return scope.model.role !== 'other';
+                                          },
                                   },
                                   {
                                     className: 'col-xs-3',
@@ -465,65 +524,66 @@
                                       ],
                                       required: true
                                     }
-                                  },
-                                  {
-                                    className: 'row',
-                                    fieldGroup: [
-                                      {
-                                        className: 'col-xs-6',
-                                        type: 'select',
-                                        key: 'classyear',
-                                        templateOptions: {
-                                          label: 'Class Year',
-                                          placeholder: 'Enter attorney\'s class year',
-                                          options: [
-                                            {name: '2018', value: '2018'},
-                                            {name: '2017', value: '2017'},
-                                            {name: '2016', value: '2016'},
-                                            {name: '2015', value: '2015'},
-                                            {name: '2014', value: '2014'},
-                                            {name: '2013', value: '2013'},
-                                            {name: '2012', value: '2012'},
-                                            {name: '2011', value: '2011'},
-                                            {name: '2010', value: '2010'},
-                                            {name: '2009', value: '2009'},
-                                            {name: '2008', value: '2008'},
-                                            {name: '2007', value: '2007'},
-                                            {name: '2006', value: '2006'},
-                                            {name: '2005', value: '2005'},
-                                            {name: '2004', value: '2004'},
-                                            {name: '2003', value: '2003'},
-                                            {name: '2002', value: '2002'},
-                                            {name: '2001', value: '2001'},
-                                            {name: '2000', value: '2000'},
-                                            {name: '1999', value: '1999'},
-                                            {name: '1998', value: '1998'},
-                                            {name: '1997', value: '1997'},
-                                            {name: '1996', value: '1996'},
-                                            {name: '1995', value: '1995'},
-                                            {name: '1994', value: '1994'},
-                                            {name: '1993', value: '1993'},
-                                            {name: '1992', value: '1992'},
-                                            {name: '1991', value: '1991'},
-                                            {name: '1990', value: '1990'},
-                                          ],
-                                          required: false
-                                        }
-                                      },
-                                      {
-                                        className: 'col-xs-6',
-                                        type: 'input',
-                                        key: 'firmlink',
-                                        templateOptions: {
-                                          label: 'Firm Link',
-                                          placeholder: 'Enter attorney\'s firm link',
-                                          required: false
-                                        },
-                                      }
-                                    ]
-                                  },
+                                  }
                                 ]
                               },
+                              {
+                                className: 'row',
+                                fieldGroup: [
+                                  {
+                                    className: 'col-xs-3',
+                                    type: 'select',
+                                    key: 'classyear',
+                                    templateOptions: {
+                                      label: 'Class Year',
+                                      placeholder: 'Enter attorney\'s class year',
+                                      options: [
+                                        {name: '2018', value: '2018'},
+                                        {name: '2017', value: '2017'},
+                                        {name: '2016', value: '2016'},
+                                        {name: '2015', value: '2015'},
+                                        {name: '2014', value: '2014'},
+                                        {name: '2013', value: '2013'},
+                                        {name: '2012', value: '2012'},
+                                        {name: '2011', value: '2011'},
+                                        {name: '2010', value: '2010'},
+                                        {name: '2009', value: '2009'},
+                                        {name: '2008', value: '2008'},
+                                        {name: '2007', value: '2007'},
+                                        {name: '2006', value: '2006'},
+                                        {name: '2005', value: '2005'},
+                                        {name: '2004', value: '2004'},
+                                        {name: '2003', value: '2003'},
+                                        {name: '2002', value: '2002'},
+                                        {name: '2001', value: '2001'},
+                                        {name: '2000', value: '2000'},
+                                        {name: '1999', value: '1999'},
+                                        {name: '1998', value: '1998'},
+                                        {name: '1997', value: '1997'},
+                                        {name: '1996', value: '1996'},
+                                        {name: '1995', value: '1995'},
+                                        {name: '1994', value: '1994'},
+                                        {name: '1993', value: '1993'},
+                                        {name: '1992', value: '1992'},
+                                        {name: '1991', value: '1991'},
+                                        {name: '1990', value: '1990'},
+                                      ],
+                                      required: false
+                                    }
+                                  },
+                                  {
+                                    className: 'col-xs-9',
+                                    type: 'input',
+                                    key: 'firmlink',
+                                    templateOptions: {
+                                      label: 'Firm Link',
+                                      placeholder: 'Enter attorney\'s firm link',
+                                      required: false
+                                    },
+                                  }
+                                ]
+                              },
+                             
                               // {
                               //   template: '<hr style="border-top: dashed 1px; border-color:black;"/>'
                               // }
