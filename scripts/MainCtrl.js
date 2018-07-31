@@ -307,7 +307,7 @@
               // hideExpression: function($viewValue, $modelValue, scope) {
               //         return scope.model.project_type !== 'other';
               //       },
-              
+
             },
             // {
             //   className: 'col-xs-6',
@@ -350,6 +350,8 @@
                 options: [
                   {name: 'Buyside', value: 'buyside'},
                   {name: 'Sellside', value: 'sellside'},
+                  {name: 'Lender', value: 'lender'},
+                  {name: 'Borrower', value: 'borrower'}
                 ],
                 required: true
               }
@@ -407,6 +409,8 @@
                             options: [
                               {name: 'Buyside', value: 'buyside'},
                               {name: 'Sellside', value: 'sellside'},
+                              {name: 'Lender', value: 'lender'},
+                              {name: 'Borrower', value: 'borrower'}
                             ],
                             required: true
                           }
@@ -436,7 +440,7 @@
                                 className: 'row',
                                 fieldGroup: [
                                   {
-                                    className: 'col-xs-4',
+                                    className: 'col-xs-3',
                                     type: 'input',
                                     key: 'firstName',
                                     templateOptions: {
@@ -446,7 +450,7 @@
                                     }
                                   },
                                   {
-                                    className: 'col-xs-4',
+                                    className: 'col-xs-3',
                                     type: 'input',
                                     key: 'lastName',
                                     templateOptions: {
@@ -456,13 +460,33 @@
                                     },
                                   },
                                   {
-                                    className: 'col-xs-4',
+                                    className: 'col-xs-3',
                                     key: 'email',
                                     type: 'input',
                                     templateOptions: {
                                       type: 'email',
                                       label: 'Email',
                                       placeholder: 'Enter email',
+                                      required: true
+                                    }
+                                  },
+                                  {
+                                    className: 'col-xs-3',
+                                    type: "radioType",
+                                    key: "performance",
+                                    templateOptions: {
+                                      inline: true,
+                                      label: "Performance - 5 is perfect",
+                                      // theme: "custom",
+                                      labelProp: "score",
+                                      valueProp: "id",
+                                      options: [
+                                          {score: "1", id: 1},
+                                          {score: "2", id: 2},
+                                          {score: "3", id: 3},
+                                          {score: "4", id: 4},
+                                          {score: "5", id: 5}
+                                      ],
                                       required: true
                                     }
                                   }
@@ -526,31 +550,6 @@
                                   },
                                   {
                                     className: 'col-xs-3',
-                                    type: "radioType",
-                                    key: "performance",
-                                    templateOptions: {
-                                      inline: true,
-                                      label: "Performance - 5 is perfect",
-                                      // theme: "custom",
-                                      labelProp: "score",
-                                      valueProp: "id",
-                                      options: [
-                                          {score: "1", id: 1},
-                                          {score: "2", id: 2},
-                                          {score: "3", id: 3},
-                                          {score: "4", id: 4},
-                                          {score: "5", id: 5}
-                                      ],
-                                      required: true
-                                    }
-                                  }
-                                ]
-                              },
-                              {
-                                className: 'row',
-                                fieldGroup: [
-                                  {
-                                    className: 'col-xs-3',
                                     type: 'select',
                                     key: 'classyear',
                                     templateOptions: {
@@ -590,8 +589,13 @@
                                       required: false
                                     }
                                   },
+                                ]
+                              },
+                              {
+                                className: 'row',
+                                fieldGroup: [
                                   {
-                                    className: 'col-xs-9',
+                                    //className: 'col-xs-9',
                                     type: 'input',
                                     key: 'firmlink',
                                     templateOptions: {
@@ -608,6 +612,13 @@
                               // }
                             ]
                           }
+                      },
+                      {
+                        key: 'files',
+                        type: 'ng-file-upload',
+                        templateOptions: {
+                          label: 'Files'
+                        }
                       }, 
                   ]
               }
