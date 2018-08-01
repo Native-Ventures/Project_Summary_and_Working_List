@@ -33,8 +33,9 @@
       controller: function($scope) {
         $scope.formOptions = {formState: $scope.formState};
         $scope.addNew = addNew;
-        
+        $scope.confirmRemove = confirmRemove;
         $scope.copyFields = copyFields;
+        
         
         
         function copyFields(fields) {
@@ -73,6 +74,14 @@
         function getRandomInt(min, max) {
           return Math.floor(Math.random() * (max - min)) + min;
         }
+
+        function confirmRemove(index) {
+          var reset = confirm("Are you sure you would like to remove this section?");
+          if (reset == true){
+            $scope.model[$scope.options.key].splice(index, 1);
+          }
+        }
+
       }
     });
   });
@@ -224,6 +233,8 @@
       }
     }
 
+
+
     function init() {
 
       vm.fields = 
@@ -262,7 +273,7 @@
                 valid_purchase_price: {
                   expression: function(viewValue, modelValue) {
                     var value = modelValue || viewValue;
-                    return RegExp('^\\$[0-9]{1,3}(,[0-9]{3})*$').test(value);
+                    return RegExp('^[0-9]{1,3}(,[0-9]{3})*$').test(value);
                   },
                   message: '$viewValue + " is not a valid purchase price."'
                 }
@@ -270,7 +281,10 @@
               templateOptions: {
                   type: 'text',
                   label: 'Purchase Price',
-                  placeholder: '$1,000,000,000',
+                  addonLeft: {
+                    text: "$"
+                  },
+                  placeholder: '1,000,000,000',
                   required: true
               },
             },
