@@ -1,0 +1,129 @@
+/* css/style.css */
+
+html{
+	background: linear-gradient(#2f557c,black);
+	/*background: linear-gradient(#013182, #bfd7ff);*/
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+	height: 100%;
+	overflow-y: hidden;
+}
+
+body{
+	background: linear-gradient(#2f557c,black);
+	/*background: linear-gradient(#013182, #bfd7ff);*/
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+	height: 100%;
+	overflow-y: scroll;
+}
+
+.container h1 {
+	font-size: 30px;
+	font-style: bold;
+	text-align: center;
+	padding-bottom: 25px;
+}
+
+
+.container {
+  background-color: rgba(255,255,255, 1);
+  border: 2px solid black;
+  margin-top: 30px;
+  padding: 20px;
+  top: 20px;
+  -webkit-box-shadow: 0px 0px 0px 5px rgba(255,255,255,.2);
+	box-shadow: 0px 0px 0px 5px rgba(255,255,255,.2);
+}
+
+
+.banner {
+	background-image: url("images/knelogo.png");
+	background-size: 12.5%;
+	height: 100px;
+	background-repeat: repeat-x;
+}
+
+.validation {
+  position: absolute;
+  font-size: .8em;
+  color: #a94442;
+}
+
+/*img {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+    height: auto;
+}*/
+
+
+.formly-field {
+  margin-bottom: 16px;
+}
+
+.formly.row, .formly.row .formly-field {
+  margin-bottom: 0;
+}
+
+.formly.row .formly-field:first-child {
+  padding-left: 0;
+}
+
+.formly.row .formly-field:nth-last-child(2) {
+  padding-right: 0;
+}
+
+.formly-field-group ng-form {
+  margin: 0;
+}
+
+.formly-field-group {
+  margin: 0;
+}
+
+.error-messages {
+  position: relative;
+}
+
+.error-messages, .message {
+  opacity: 1;
+  transition: .3s linear all;
+}
+
+.message {
+  font-size: .8em;
+  position: absolute;
+  width: 100%;
+  color: #a94442;
+  margin-top: 2px;
+}
+
+.error-messages.ng-enter.ng-enter-active,
+.message.ng-enter.ng-enter-active {
+  opacity: 1;
+  top: 0;
+}
+
+.error-messages.ng-enter,
+.message.ng-enter {
+  opacity: 0;
+  top: -10px;
+}
+
+.error-messages.ng-leave,
+.message.ng-leave {
+  opacity: 1;
+  top: 0;
+}
+
+.error-messages.ng-leave-active,
+.message.ng-leave-active {
+  opacity: 0;
+  top: -10px;
+}
