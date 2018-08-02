@@ -127,3 +127,28 @@ body{
   opacity: 0;
   top: -10px;
 }
+
+
+.btn-firm {
+  color: white;
+  background-color: #b241f4;
+  border-color: #8e33c4;
+}
+
+.btn-firm:hover {
+  color: white;
+  background-color: #9836d1;
+  border-color: #0062cc;
+}
+
+.btn-attorney {
+  color: white;
+  background-color: #7742f4;
+  border-color: #6537ce;
+}
+
+.btn-attorney:hover {
+  color: white;
+  background-color: #6437ce;
+  border-color: #0062cc;
+}

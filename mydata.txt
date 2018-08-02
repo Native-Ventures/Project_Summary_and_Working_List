@@ -1,0 +1,1 @@
+{"project":"Apple Merger","closing_date":"2018-08-06T21:00:00.000Z","purchase_price":"$1,000","project_type":"public_mna","kirkland_client":"Apple","kirkland_role":"buyside"}

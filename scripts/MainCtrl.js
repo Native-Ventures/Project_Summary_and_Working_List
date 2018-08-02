@@ -206,21 +206,21 @@
     vm.originalFields = angular.copy(vm.fields);
 
     function onSubmit() {
-      var data = JSON.stringify(vm.model);// this is your data that you want to pass to the server (could be json)
-      var http = new XMLHttpRequest();
-      var url = 'senddata.php';
-      http.open('POST', url, true);
+      // var data = JSON.stringify(vm.model);// this is your data that you want to pass to the server (could be json)
+      // var http = new XMLHttpRequest();
+      // var url = 'senddata.php';
+      // http.open('POST', url, true);
 
-      //Send the proper header information along with the request
-      http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      // //Send the proper header information along with the request
+      // http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-      http.onreadystatechange = function() {//Call a function when the state changes.
-          if(http.readyState == 4 && http.status == 200) {
-              // alert(http.responseText);
-          }
-      }
-      http.send(data);
-      console.log(data);
+      // http.onreadystatechange = function() {//Call a function when the state changes.
+      //     if(http.readyState == 4 && http.status == 200) {
+      //         // alert(http.responseText);
+      //     }
+      // }
+      // http.send(data);
+      // console.log(data);
 
       alert("Thank you for submitting your project summary.");
       vm.options.resetModel();
@@ -395,9 +395,8 @@
           key: 'firms',
           templateOptions:
               { 
+                btnClass: "btn btn-block btn-firm",
                 btnText: 'Add Another Firm',
-                btnColor: '#b241f4',
-                btnBorder: '#8e33c4',
                 removebtnText: 'Remove Firm',
                 fields: 
                   [
@@ -459,10 +458,8 @@
                       key: 'attorneys',
                       templateOptions: 
                         {
+                          btnClass: "btn btn-block btn-attorney",
                           btnText: "Add Another Attorney",
-                          btnColor: "#7742f4",
-                          btnHoverColor: "#fff",
-                          btnBorder: "#6537ce",
                           removebtnText: "Remove Attorney",
                           fields: 
                             [
