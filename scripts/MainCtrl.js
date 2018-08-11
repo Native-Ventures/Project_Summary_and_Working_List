@@ -239,6 +239,44 @@
 
       vm.fields = 
       [
+      	{
+          className: 'row',
+          fieldGroup:[
+            {
+              className: 'col-xs-4',
+              key: 'contributer_first',
+              type: 'input',
+              templateOptions: {
+                  type: 'text',
+                  label: 'Contributing Party\'s First Name',
+                  placeholder: 'Enter your first name',
+                  required: true,
+              }
+            },
+            {
+              className: 'col-xs-4',
+              key: 'contributer_last',
+              type: 'input',
+              templateOptions: {
+                  type: 'text',
+                  label: 'Contributing Party\'s Last Name',
+                  placeholder: 'Enter your last name',
+                  required: true,
+              }
+            },
+            {
+              className: 'col-xs-4',
+              key: 'contributer_email',
+              type: 'input',
+              templateOptions: {
+                  type: 'email',
+                  label: 'Contributing Party\'s Email',
+                  placeholder: 'Enter your last name',
+                  required: true,
+              }
+            },
+          ]
+        },
         {
           className: 'row',
           fieldGroup:[
@@ -253,6 +291,27 @@
                   required: true,
               }
             },
+            {
+	          className: 'col-xs-6',
+	          key: 'project_type',
+	          type: 'select',
+	          templateOptions: {
+	          	label: 'Project Type',
+	          	options: [
+	            	{name: 'Private Equity M&A', value: 'private_equity_mna'},
+	            	{name: 'Public M&A', value: 'public_mna'},
+	            	{name: 'Financing', value: 'financing'},
+	                {name: 'Capital Markets', value: 'capital_markets'},
+	                {name: 'Other', value: 'other'},
+	           	],
+	             required: true
+	          }
+            },
+          ]
+        },
+        {
+          className: 'row',
+          fieldGroup:[
             {
               className: 'col-xs-3',
               key: 'closing_date',
@@ -288,42 +347,21 @@
                   required: true
               },
             },
-          ]
-        },
-        {
-          className: 'row',
-          fieldGroup:[
-            {
-              className: 'col-xs-4',
-              key: 'project_type',
-              type: 'select',
-              templateOptions: {
-                  label: 'Project Type',
-                  options: [
-                    {name: 'Private Equity M&A', value: 'private_equity_mna'},
-                    {name: 'Public M&A', value: 'public_mna'},
-                    {name: 'Financing', value: 'financing'},
-                    {name: 'Capital Markets', value: 'capital_markets'},
-                    {name: 'Other', value: 'other'},
-               ],
-                  required: true
-              }
-            },
-            {
-              className: 'col-xs-4',
-              key: 'other_project',
-              type: 'input',
-              templateOptions: {
-                  label: 'Other Project Type',
-                    required: false
-              },
+            // {
+            //   className: 'col-xs-4',
+            //   key: 'other_project',
+            //   type: 'input',
+            //   templateOptions: {
+            //       label: 'Other Project Type',
+            //         required: false
+            //   },
 
-              expressionProperties: {
-                'templateOptions.disabled': function($viewValue, $modelValue, scope) {
-                  return scope.model.project_type !== 'other';
-                }
-              },
-            },
+            //   expressionProperties: {
+            //     'templateOptions.disabled': function($viewValue, $modelValue, scope) {
+            //       return scope.model.project_type !== 'other';
+            //     }
+            //   },
+            // },
 
               // hideExpression: function($viewValue, $modelValue, scope) {
               //         return scope.model.project_type !== 'other';
@@ -348,7 +386,7 @@
             // },
 
             {
-              className: "col-xs-4",
+              className: "col-xs-6",
               key: 'working_group_list',
               type: 'ng-file-upload',
               templateOptions: {
@@ -512,7 +550,8 @@
                                           {score: "2", id: 2},
                                           {score: "3", id: 3},
                                           {score: "4", id: 4},
-                                          {score: "5", id: 5}
+                                          {score: "5", id: 5},
+                                          {score: "NA", id: "NA"}
                                       ],
                                       required: true
                                     }
@@ -538,10 +577,10 @@
                                   },
                                   {
                                     className: 'col-xs-3',
-                                    key: 'role',
+                                    key: 'practice_area',
                                     type: 'select',
                                     templateOptions: {
-                                      label: 'Role',
+                                      label: 'Practice Area',
                                       options: [
                                         {name: 'M&A', value: 'mna'},
                                         {name: 'Finance', value: 'finance'},
@@ -555,26 +594,40 @@
                                     }
                                   },
                                   {
-                                    className: 'col-xs-3',
-                                    key: 'other_role',
-                                    type: 'input',
-                                    templateOptions: {
-                                        label: 'Other Role',
-                                          required: false,
-                                          disabled: true
-                                    },
+						              className: 'col-xs-3',
+						              key: 'office',
+						              type: 'select',
+						              templateOptions: {
+						                label: 'Office',
+						                options: [
+						                	{name: 'New York City', value: 'nyc'},
+						                	{name: 'Chicago', value: 'chg'},
+						                	{name: 'Other', value: 'other'},
+						                ],
+						                  required: false
+						              },
+						          },
+                                  // {
+                                  //   className: 'col-xs-3',
+                                  //   key: 'other_role',
+                                  //   type: 'input',
+                                  //   templateOptions: {
+                                  //       label: 'Other Role',
+                                  //         required: false,
+                                  //         disabled: true
+                                  //   },
 
-                                    expressionProperties: {
-                                      'templateOptions.disabled': function($viewValue, $modelValue, scope) {
-                                        return scope.model.role !== 'other';
-                                      }
-                                    },
+                                  //   expressionProperties: {
+                                  //     'templateOptions.disabled': function($viewValue, $modelValue, scope) {
+                                  //       return scope.model.role !== 'other';
+                                  //     }
+                                  //   },
 
-                                    // hideExpression: function($viewValue, $modelValue, scope) {
-                                    //         return scope.model.role !== 'other';
-                                    //       },
+                                  //   // hideExpression: function($viewValue, $modelValue, scope) {
+                                  //   //         return scope.model.role !== 'other';
+                                  //   //       },
 
-                                  },
+                                  // },
                                   {
                                     className: 'col-xs-3',
                                     type: 'select',
@@ -643,6 +696,14 @@
                   ]
               }
             },
+            {
+	          type: 'textarea',
+	          templateOptions: {
+	            label: 'Project Notes',
+	            placeholder: 'Please enter any notes about the project',
+	            rows: 5
+	          },
+	        },
         ];
     }
   });
