@@ -248,7 +248,7 @@
               type: 'input',
               templateOptions: {
                   type: 'text',
-                  label: 'Contributing Party\'s First Name',
+                  label: 'First Name',
                   placeholder: 'Enter your first name',
                   required: true,
               }
@@ -259,7 +259,7 @@
               type: 'input',
               templateOptions: {
                   type: 'text',
-                  label: 'Contributing Party\'s Last Name',
+                  label: 'Last Name',
                   placeholder: 'Enter your last name',
                   required: true,
               }
@@ -270,8 +270,8 @@
               type: 'input',
               templateOptions: {
                   type: 'email',
-                  label: 'Contributing Party\'s Email',
-                  placeholder: 'Enter your last name',
+                  label: 'Email',
+                  placeholder: 'Enter your email',
                   required: true,
               }
             },
@@ -686,6 +686,14 @@
                                   }
                                 ]
                               },
+                              {
+                                type: 'textarea',
+                                templateOptions: {
+                                  label: 'Notes',
+                                  placeholder: 'Please enter any notes',
+                                  rows: 5
+                                },
+                              },
                              
                               // {
                               //   template: '<hr style="border-top: dashed 1px; border-color:black;"/>'
@@ -696,14 +704,7 @@
                   ]
               }
             },
-            {
-	          type: 'textarea',
-	          templateOptions: {
-	            label: 'Project Notes',
-	            placeholder: 'Please enter any notes about the project',
-	            rows: 5
-	          },
-	        },
+            
         ];
     }
   });
