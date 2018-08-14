@@ -71,8 +71,6 @@
           <div>
             <div class="{{hideRepeat}}">
               <div class="repeatsection" ng-repeat="element in model[options.key]" ng-init="fields = copyFields(to.fields)">
-                
-                <hr style="border-top: dotted 3px;"/>
 
                 <div style="margin-bottom:20px;">
                   <button type="button" class="btn btn-block btn-warning" ng-click="model[options.key].splice($index, 1)">
